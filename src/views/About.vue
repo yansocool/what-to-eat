@@ -120,32 +120,17 @@
                             <div>
                                 <div class="flex items-center gap-4 mb-4">
                                     <div class="w-16 h-16 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-full flex items-center justify-center border-2 border-[#0A0910]">
-                                        <span class="text-white text-2xl font-bold">L</span>
+                                        <span class="text-white text-2xl font-bold">Y</span>
                                     </div>
                                     <div>
-                                        <h3 class="text-xl font-bold text-dark-800">liuziting</h3>
-                                        <p class="text-gray-600 text-sm">liuziting2014@163.com</p>
+                                        <h3 class="text-xl font-bold text-dark-800">严太帅</h3>
+                                        <p class="text-gray-600 text-sm">yan17368710316@163.com</p>
                                     </div>
                                 </div>
                                 <p class="text-gray-700 mb-4 text-sm leading-relaxed">
                                     🚀 Vibe Coding 通过 Kiro 编辑器，实现了从需求分析、架构设计到代码实现的全流程开发。 致力于探索AI与传统开发的完美结合，让编程变得更加高效和有趣。
                                 </p>
                                 <div class="space-y-3">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center">
-                                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                                <path
-                                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                                                />
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <span class="text-sm font-medium text-gray-700">开源地址</span>
-                                            <a href="https://github.com/liu-ziting/what-to-eat" target="_blank" class="block text-blue-600 hover:text-blue-700 underline text-sm">
-                                                github.com/liu-ziting/what-to-eat
-                                            </a>
-                                        </div>
-                                    </div>
                                     <div class="flex items-center gap-3">
                                         <div class="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
                                             <span class="text-white text-sm font-bold">K</span>
@@ -207,7 +192,7 @@
                                         <div class="flex-shrink-0">
                                             <div class="relative">
                                                 <img
-                                                    src="/wx.jpg"
+                                                    src="/mm_facetoface_collect_qrcode_1768220755565.png"
                                                     alt="微信收款码"
                                                     class="w-32 h-32 md:w-40 md:h-40 border-4 border-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
                                                 />

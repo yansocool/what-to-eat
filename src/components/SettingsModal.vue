@@ -65,7 +65,7 @@
                                         class="absolute -inset-1 bg-gradient-to-r from-yellow-300 to-pink-500 rounded-xl blur opacity-50 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"
                                     ></div>
                                     <img
-                                        src="/wx.jpg"
+                                        src="/mm_facetoface_collect_qrcode_1768220755565.png"
                                         alt="微信收款码"
                                         class="relative w-40 h-40 md:w-48 md:h-48 rounded-xl shadow-2xl object-cover mx-auto transform transition-transform duration-300 group-hover:scale-105 ring-4 ring-white/30"
                                     />

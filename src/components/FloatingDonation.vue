@@ -93,7 +93,7 @@
                             微信支付
                         </div>
                         <img
-                            src="/wx.jpg"
+                            src="/mm_facetoface_collect_qrcode_1768220755565.png"
                             alt="微信收款码"
                             class="w-48 h-48 md:w-64 md:h-64 mx-auto border-4 border-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300"
                         />
