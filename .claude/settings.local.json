@@ -15,7 +15,11 @@
       "Bash(netlify status:*)",
       "Bash(netlify deploy:*)",
       "Bash(netlify env:set:*)",
-      "Bash(npm run dev)"
+      "Bash(npm run dev)",
+      "Bash(netlify link:*)",
+      "Bash(netlify env:list:*)",
+      "Bash(timeout:*)",
+      "Bash(ls:*)"
     ]
   }
 }

@@ -10,25 +10,7 @@
             <div class="p-6">
                 <div class="space-y-3 text-gray-700 mb-6">
                     <p class="font-medium text-base">感谢使用本开源项目 🤖</p>
-                    <p class="leading-relaxed">当前使用的是<span class="font-semibold text-purple-600">智谱清言</span>免费模型（glm-4v-flash / cogview-3-flash），生成效果有限。</p>
-                    <p class="leading-relaxed">
-                        💡 <span class="font-semibold">推荐配置更强大的模型：</span><br />
-                        前往<span class="font-semibold text-orange-600">设置</span>页面，配置 <span class="font-semibold text-blue-600">DeepSeek</span>、<span
-                            class="font-semibold text-blue-600"
-                            >豆包</span
-                        >
-                        等性价比高的模型，或使用自部署服务，体验更佳。
-                    </p>
-                    <p class="text-sm leading-relaxed pt-2 border-t border-gray-200">
-                        <span class="text-gray-600">开源地址，欢迎Star⭐：</span>
-                        <a href="https://github.com/liu-ziting/what-to-eat" target="_blank" class="text-blue-600 hover:text-blue-700 underline">
-                            github.com/liu-ziting/what-to-eat
-                        </a>
-                    </p>
-                    <p class="text-sm leading-relaxed text-gray-600">
-                        更多AI开源项目，请访问：
-                        <a href="https://vibecoding.lz-t.top/" target="_blank" class="text-blue-600 hover:text-blue-700 underline break-all"> vibecoding.lz-t.top </a>
-                    </p>
+                    <p class="leading-relaxed">本项目采用开源模型 <span class="font-semibold text-purple-600">GLM4.7</span> 提供AI服务。</p>
                 </div>
                 <div class="flex gap-3">
                     <button
