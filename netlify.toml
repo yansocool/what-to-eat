@@ -1,5 +1,5 @@
 [build]
-  command = "npm install --legacy-peer-deps && npx vite build --config vite.config.prod.ts"
+  command = "npm install --legacy-peer-deps && npm run build:netlify"
   publish = "dist"
 
 [build.environment]
