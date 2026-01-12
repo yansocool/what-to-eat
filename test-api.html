@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .test-section {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        .result {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <h1>智谱AI API 测试</h1>
+
+    <div class="test-section">
+        <h2>测试1: 简单对话</h2>
+        <p>测试基本的API连接和响应</p>
+        <button onclick="testSimpleChat()">测试简单对话</button>
+        <div id="result1" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>测试2: 生成菜谱（JSON格式）</h2>
+        <p>测试生成JSON格式的菜谱</p>
+        <button onclick="testRecipeGeneration()">测试生成菜谱</button>
+        <div id="result2" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>配置信息</h2>
+        <div id="config" class="result"></div>
+    </div>
+
+    <script>
+        const API_KEY = '0f13475ec8ff4ddb88e828b86fbc6da5.XMznB44lxPamPJSS';
+        const BASE_URL = 'https://open.bigmodel.cn/api/paas/v4/';
+        const MODEL = 'glm-4-flash';
+
+        // 显示配置
+        document.getElementById('config').innerHTML = `
+<strong>API Key:</strong> ${API_KEY.substring(0, 20)}...
+<strong>Base URL:</strong> ${BASE_URL}
+<strong>Model:</strong> ${MODEL}
+        `;
+
+        async function testSimpleChat() {
+            const resultDiv = document.getElementById('result1');
+            resultDiv.innerHTML = '正在测试...';
+            resultDiv.className = 'result';
+
+            try {
+                const response = await fetch(BASE_URL + 'chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${API_KEY}`
+                    },
+                    body: JSON.stringify({
+                        model: MODEL,
+                        messages: [
+                            { role: 'user', content: '你好，请用一句话介绍你自己' }
+                        ],
+                        max_tokens: 50,
+                        stream: false
+                    })
+                });
+
+                const data = await response.json();
+                console.log('API Response:', data);
+
+                if (response.ok && data.choices && data.choices[0]) {
+                    resultDiv.innerHTML = `<strong>成功!</strong>\n\n响应内容：\n${data.choices[0].message.content}\n\n完整响应：\n${JSON.stringify(data, null, 2)}`;
+                    resultDiv.className = 'result success';
+                } else {
+                    resultDiv.innerHTML = `<strong>失败!</strong>\n\n状态码: ${response.status}\n\n响应：\n${JSON.stringify(data, null, 2)}`;
+                    resultDiv.className = 'result error';
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<strong>错误!</strong>\n\n${error.message}`;
+                resultDiv.className = 'result error';
+                console.error('Error:', error);
+            }
+        }
+
+        async function testRecipeGeneration() {
+            const resultDiv = document.getElementById('result2');
+            resultDiv.innerHTML = '正在测试...';
+            resultDiv.className = 'result';
+
+            const prompt = `请为"西红柿炒鸡蛋"生成详细的菜谱。
+
+请按照以下JSON格式返回：
+{
+  "name": "菜品名称",
+  "ingredients": ["食材1", "食材2"],
+  "steps": [
+    {"step": 1, "description": "步骤描述", "time": 5}
+  ],
+  "cookingTime": 15,
+  "difficulty": "easy",
+  "tips": ["技巧1", "技巧2"]
+}`;
+
+            try {
+                const response = await fetch(BASE_URL + 'chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${API_KEY}`
+                    },
+                    body: JSON.stringify({
+                        model: MODEL,
+                        messages: [
+                            {
+                                role: 'system',
+                                content: '你是一位专业的厨师，请严格按照JSON格式返回菜谱，不要包含任何其他文字。'
+                            },
+                            { role: 'user', content: prompt }
+                        ],
+                        temperature: 0.7,
+                        max_tokens: 1000,
+                        stream: false
+                    })
+                });
+
+                const data = await response.json();
+                console.log('Recipe API Response:', data);
+
+                if (response.ok && data.choices && data.choices[0]) {
+                    const content = data.choices[0].message.content;
+                    resultDiv.innerHTML = `<strong>成功!</strong>\n\n返回内容：\n${content}\n\n完整响应：\n${JSON.stringify(data, null, 2)}`;
+                    resultDiv.className = 'result success';
+
+                    // 尝试解析JSON
+                    try {
+                        let cleanContent = content.trim();
+                        if (cleanContent.startsWith('```json')) {
+                            cleanContent = cleanContent.replace(/```json\s*/, '').replace(/```\s*$/, '');
+                        } else if (cleanContent.startsWith('```')) {
+                            cleanContent = cleanContent.replace(/```\s*/, '').replace(/```\s*$/, '');
+                        }
+                        const recipe = JSON.parse(cleanContent);
+                        resultDiv.innerHTML += '\n\n<strong>解析后的菜谱：</strong>\n' + JSON.stringify(recipe, null, 2);
+                    } catch (e) {
+                        resultDiv.innerHTML += `\n\n<strong>JSON解析失败:</strong> ${e.message}`;
+                    }
+                } else {
+                    resultDiv.innerHTML = `<strong>失败!</strong>\n\n状态码: ${response.status}\n\n响应：\n${JSON.stringify(data, null, 2)}`;
+                    resultDiv.className = 'result error';
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<strong>错误!</strong>\n\n${error.message}`;
+                resultDiv.className = 'result error';
+                console.error('Error:', error);
+            }
+        }
+    </script>
+</body>
+</html>

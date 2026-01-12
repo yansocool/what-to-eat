@@ -1075,6 +1075,8 @@ const generateRecipes = async () => {
         } else {
             // 为每个槽位启动进度动画
             const progressIntervals: NodeJS.Timeout[] = []
+            const timeoutCheckIntervals: NodeJS.Timeout[] = []
+
             cuisineSlots.value.forEach((slot, index) => {
                 const interval = setInterval(() => {
                     if (!slot.recipe) {
@@ -1085,6 +1087,18 @@ const generateRecipes = async () => {
                     }
                 }, 800 + index * 200) // 每个槽位的更新频率略有不同
                 progressIntervals.push(interval)
+
+                // 添加超时检测：如果90秒后还没完成，标记为超时
+                const timeoutInterval = setTimeout(() => {
+                    if (!slot.recipe && !slot.error) {
+                        slot.error = true
+                        slot.errorMessage = '请求超时，请检查网络连接或API配置'
+                        slot.progress = 0
+                        slot.loadingText = '请求超时'
+                        console.warn(`槽位 ${slot.name} 请求超时`)
+                    }
+                }, 90000) // 90秒超时
+                timeoutCheckIntervals.push(timeoutInterval as any)
             })
 
             // 获取选中的菜系对象
@@ -1147,15 +1161,17 @@ const generateRecipes = async () => {
                     // 检查是否所有菜系都已处理完成（成功或失败）
                     if (completedCount === total) {
                         isLoading.value = false
-                        // 清理所有进度定时器
+                        // 清理所有进度定时器和超时检测定时器
                         progressIntervals.forEach(interval => clearInterval(interval))
+                        timeoutCheckIntervals.forEach(interval => clearTimeout(interval as any))
                     }
                 },
                 customPrompt.value.trim() || undefined
             )
 
-            // 清理进度定时器
+            // 清理进度定时器和超时检测定时器
             progressIntervals.forEach(interval => clearInterval(interval))
+            timeoutCheckIntervals.forEach(interval => clearTimeout(interval as any))
         }
     } catch (error) {
         console.error('生成菜谱失败:', error)

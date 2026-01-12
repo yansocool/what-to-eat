@@ -20,7 +20,7 @@ const createAiClient = () => {
     const config = getTextGenerationConfig()
     return axios.create({
         baseURL: config.baseUrl,
-        timeout: config.timeout,
+        timeout: config.timeout || 60000, // 默认60秒超时，避免无限等待
         headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${config.apiKey}`
