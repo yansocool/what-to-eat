@@ -35,8 +35,10 @@ const router = createRouter({
 // 初始化应用
 const app = createApp(App).use(router)
 
-// 在应用挂载前检查环境变量变化并自动刷新
-autoRefreshEnvSettings()
+// 在应用挂载前检查环境变量变化并自动刷新（仅在开发环境）
+if (import.meta.env.DEV) {
+    autoRefreshEnvSettings()
+}
 
 // 挂载应用
 app.mount('#app')
