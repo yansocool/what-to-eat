@@ -1,0 +1,15 @@
+/*.png
+  Cache-Control: no-cache, no-store, must-revalidate
+  Cache-Control: max-age=0
+
+/*.jpg
+  Cache-Control: no-cache, no-store, must-revalidate
+  Cache-Control: max-age=0
+
+/*.svg
+  Cache-Control: no-cache, no-store, must-revalidate
+  Cache-Control: max-age=0
+
+/*.ico
+  Cache-Control: no-cache, no-store, must-revalidate
+  Cache-Control: max-age=0
