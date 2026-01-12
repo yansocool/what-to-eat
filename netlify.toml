@@ -1,11 +1,10 @@
 [build]
-  command = "npm ci --legacy-peer-deps && npx vite build --config vite.config.prod.ts"
+  command = "npm install --legacy-peer-deps && npx vite build --config vite.config.prod.ts"
   publish = "dist"
 
 [build.environment]
   NODE_VERSION = "18"
   CI = "true"
   NODE_ENV = "production"
-  NPM_FLAGS = "--legacy-peer-deps"
 
 # 使用 Netlify 的 _redirects 文件来处理 SPA 路由
